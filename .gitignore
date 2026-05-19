@@ -1,0 +1,6 @@
+/.nuget/
+/docs/
+/skills/
+**/bin/
+**/obj/
+.vs/
