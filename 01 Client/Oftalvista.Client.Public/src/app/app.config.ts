@@ -4,12 +4,11 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app.routes';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
-import { demoInterceptor } from './core/interceptors/demo.interceptor';
 import { jwtInterceptor } from './core/interceptors/jwt.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(withInterceptors([errorInterceptor, demoInterceptor, jwtInterceptor])),
+    provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor])),
   ],
 };

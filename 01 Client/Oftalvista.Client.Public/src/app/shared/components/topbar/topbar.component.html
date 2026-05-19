@@ -4,16 +4,7 @@
     <div class="subtitle">{{ subtitle }}</div>
   </div>
   <div style="display: flex; align-items: center; gap: 10px">
-    <span class="chip" [class.chip-info]="mode.isDemoMode()" [class.chip-off]="!mode.isDemoMode()">
-      {{ mode.isDemoMode() ? 'Demo' : 'Backend' }}
-    </span>
-    <mat-slide-toggle
-      [checked]="mode.isDemoMode()"
-      (change)="onModeChange($event)"
-      matTooltip="Cambiar modo reinicia la sesion actual"
-    >
-      Demo
-    </mat-slide-toggle>
+    <span class="chip chip-info">Backend SQL</span>
     <span class="chip chip-info"
       >{{ auth.getUser()?.nombres }} {{ auth.getUser()?.apellidos }}</span
     >
