@@ -6,7 +6,7 @@ import { environment } from '../../../environments/environment';
 
 export const demoInterceptor: HttpInterceptorFn = (req, next) => {
   const mode = inject(AppModeService);
-  if (!mode.versionDemo() || !req.url.startsWith(environment.apiUrl)) {
+  if (!mode.isDemoMode() || !req.url.startsWith(environment.apiUrl)) {
     return next(req);
   }
 

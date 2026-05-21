@@ -1,0 +1,39 @@
+<div class="dialog-wrap" style="min-width: 480px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">Detalle — Usuario</div>
+      <div class="dialog-subtitle">Informacion de solo lectura</div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >badge</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <div class="detalle-grid" style="padding-top: 8px">
+      <div class="detalle-item">
+        <label>ID</label><span>{{ data.idUsuario ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Nombres</label><span>{{ data.nombres ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Apellidos</label><span>{{ data.apellidos ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Correo</label><span>{{ data.correo ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Telefono</label><span>{{ data.telefono ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>N° Documento</label><span>{{ data.numeroDocumento ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Estado</label><span>{{ data.idTblEstadoVigencia ?? '—' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="ref.close()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

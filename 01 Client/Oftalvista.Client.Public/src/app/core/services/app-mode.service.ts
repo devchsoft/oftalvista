@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 export class AppModeService {
   private readonly storageKey = 'ov_use_demo';
 
-  versionDemo(): boolean {
+  isDemoMode(): boolean {
     const stored = localStorage.getItem(this.storageKey);
     if (stored == null) return environment.demoMode;
     return stored === 'true';

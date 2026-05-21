@@ -1,0 +1,86 @@
+<div class="premium-shell">
+  <app-sidebar></app-sidebar>
+  <div class="content-wrap">
+    <app-topbar title="Historial de Citas" subtitle="Trazabilidad de estados de citas"></app-topbar>
+    <div class="page-container">
+      <mat-card class="table-card">
+        <div class="action-bar">
+          <h2>Listado</h2>
+          <span class="chip chip-info">Consulta</span>
+        </div>
+        <div
+          style="
+            margin-bottom: 16px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(31, 102, 255, 0.05);
+            color: #425466;
+            font-size: 12px;
+          "
+        >
+          El historial se genera automaticamente desde las acciones de la cita y se muestra solo como trazabilidad.
+        </div>
+        <div class="filter-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha Desde</mat-label>
+            <input matInput [formControl]="filtros.controls['fechaRegistroDesde']" type="date" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Fecha Hasta</mat-label>
+            <input matInput [formControl]="filtros.controls['fechaRegistroHasta']" type="date" />
+          </mat-form-field>
+          <button mat-flat-button color="primary" (click)="buscar()">
+            <mat-icon>search</mat-icon> Buscar
+          </button>
+          <button mat-stroked-button (click)="limpiar()"><mat-icon>clear</mat-icon> Limpiar</button>
+        </div>
+        <div style="position: relative; min-height: 180px">
+          <mat-spinner
+            *ngIf="loading"
+            diameter="40"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)"
+          ></mat-spinner>
+          <table mat-table [dataSource]="data" style="width: 100%">
+            <ng-container matColumnDef="rowNum">
+              <th mat-header-cell *matHeaderCellDef>#</th>
+              <td mat-cell *matCellDef="let r">{{ r.rowNum }}</td>
+            </ng-container>
+            <ng-container matColumnDef="fechaEvento">
+              <th mat-header-cell *matHeaderCellDef>Fecha Evento</th>
+              <td mat-cell *matCellDef="let r">{{ r.fechaEvento }}</td>
+            </ng-container>
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+              <td mat-cell *matCellDef="let r">{{ r.descripcion }}</td>
+            </ng-container>
+            <ng-container matColumnDef="idTblEstadoVigencia">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let r">
+                <span [class]="chipEstado(r.idTblEstadoVigencia)">{{
+                  labelEstado(r.idTblEstadoVigencia)
+                }}</span>
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef style="text-align: right">Acciones</th>
+              <td mat-cell *matCellDef="let r" style="text-align: right">
+                <button mat-icon-button matTooltip="Ver" (click)="ver(r)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="cols"></tr>
+            <tr mat-row *matRowDef="let row; columns: cols"></tr>
+          </table>
+        </div>
+        <mat-paginator
+          [length]="total"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="[10, 25, 50]"
+          (page)="onPage($event)"
+          showFirstLastButtons
+        ></mat-paginator>
+      </mat-card>
+    </div>
+  </div>
+</div>

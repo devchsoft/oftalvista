@@ -1,0 +1,73 @@
+<div class="dialog-wrap" style="min-width: 500px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">{{ esEdicion ? 'Editar' : 'Nuevo' }} Pago de Cita</div>
+      <div class="dialog-subtitle">
+        {{ esEdicion ? 'Modifique los campos necesarios' : 'Complete los campos obligatorios' }}
+      </div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >payments</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <form [formGroup]="form" class="form-grid" style="padding-top: 8px">
+      <mat-form-field appearance="outline" class="full-col">
+        <mat-label>Cita *</mat-label>
+        <mat-select formControlName="idCita">
+          <mat-option *ngFor="let e of citas" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Metodo Pago *</mat-label>
+        <mat-select formControlName="idMetodoPago">
+          <mat-option *ngFor="let e of metodosPago" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Estado Pago *</mat-label>
+        <mat-select formControlName="idEstadoPago">
+          <mat-option *ngFor="let e of estadosPago" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Monto *</mat-label>
+        <input matInput formControlName="monto" type="number" />
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Fecha Pago</mat-label>
+        <input matInput formControlName="fechaPago" type="date" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Estado Vigencia *</mat-label>
+        <mat-select formControlName="idTblEstadoVigencia">
+          <mat-option *ngFor="let e of estadosVigencia" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>N° Operacion</mat-label>
+        <input matInput formControlName="numeroOperacion" type="text" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Comprobante</mat-label>
+        <input matInput formControlName="comprobante" type="text" />
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="ref.close(false)">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()" [disabled]="loading">
+      <mat-spinner
+        *ngIf="loading"
+        diameter="18"
+        style="display: inline-block; margin-right: 6px; vertical-align: middle"
+      ></mat-spinner>
+      {{ loading ? 'Guardando...' : esEdicion ? 'Actualizar' : 'Crear Registro' }}
+    </button>
+  </mat-dialog-actions>
+</div>

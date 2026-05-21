@@ -1,0 +1,39 @@
+<div class="dialog-wrap" style="min-width: 480px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">Detalle — Paciente</div>
+      <div class="dialog-subtitle">Informacion de solo lectura</div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >people</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <div class="detalle-grid" style="padding-top: 8px">
+      <div class="detalle-item">
+        <label>ID</label><span>{{ data.idPaciente ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Sexo</label><span>{{ data.sexo ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Fecha Nacimiento</label><span>{{ data.fechaNacimiento ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Direccion</label><span>{{ data.direccion ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Contacto Emergencia</label><span>{{ data.contactoEmergencia ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Tel. Emergencia</label><span>{{ data.telefonoEmergencia ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Estado</label><span>{{ data.idTblEstadoVigencia ?? '—' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="ref.close()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

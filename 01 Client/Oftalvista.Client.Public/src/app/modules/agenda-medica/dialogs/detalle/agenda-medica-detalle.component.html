@@ -1,0 +1,39 @@
+<div class="dialog-wrap" style="min-width: 480px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">Detalle — Agenda Medica</div>
+      <div class="dialog-subtitle">Informacion de solo lectura</div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >calendar_month</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <div class="detalle-grid" style="padding-top: 8px">
+      <div class="detalle-item">
+        <label>ID</label><span>{{ data.idAgendaMedica ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Fecha</label><span>{{ data.fecha ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Hora Inicio</label><span>{{ data.horaInicio ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Hora Fin</label><span>{{ data.horaFin ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Disponible</label><span>{{ data.esDisponible ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Observacion</label><span>{{ data.observacion ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Estado</label><span>{{ data.idTblEstadoVigencia ?? '—' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="ref.close()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

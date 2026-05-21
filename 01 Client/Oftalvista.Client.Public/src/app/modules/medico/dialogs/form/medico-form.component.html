@@ -1,0 +1,58 @@
+<div class="dialog-wrap" style="min-width: 500px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">{{ esEdicion ? 'Editar' : 'Nuevo' }} Medico</div>
+      <div class="dialog-subtitle">
+        {{ esEdicion ? 'Modifique los campos necesarios' : 'Complete los campos obligatorios' }}
+      </div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >medical_services</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <form [formGroup]="form" class="form-grid" style="padding-top: 8px">
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Usuario *</mat-label>
+        <mat-select formControlName="idUsuario">
+          <mat-option *ngFor="let e of usuarios" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Especialidad *</mat-label>
+        <mat-select formControlName="idEspecialidadMedica">
+          <mat-option *ngFor="let e of especialidades" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>CMP *</mat-label>
+        <input matInput formControlName="cmp" type="text" />
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Estado Vigencia *</mat-label>
+        <mat-select formControlName="idTblEstadoVigencia">
+          <mat-option *ngFor="let e of estadosVigencia" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-col">
+        <mat-label>Perfil Profesional</mat-label>
+        <textarea matInput formControlName="perfilProfesional" rows="3"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="ref.close(false)">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()" [disabled]="loading">
+      <mat-spinner
+        *ngIf="loading"
+        diameter="18"
+        style="display: inline-block; margin-right: 6px; vertical-align: middle"
+      ></mat-spinner>
+      {{ loading ? 'Guardando...' : esEdicion ? 'Actualizar' : 'Crear Registro' }}
+    </button>
+  </mat-dialog-actions>
+</div>

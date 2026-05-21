@@ -1,0 +1,36 @@
+<div class="dialog-wrap" style="min-width: 480px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">Detalle — Cita</div>
+      <div class="dialog-subtitle">Informacion de solo lectura</div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >event</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <div class="detalle-grid" style="padding-top: 8px">
+      <div class="detalle-item">
+        <label>ID</label><span>{{ data.idCita ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Fecha</label><span>{{ data.fechaCita ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Hora</label><span>{{ data.horaCita ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Motivo</label><span>{{ data.motivo ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Observacion</label><span>{{ data.observacion ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Estado</label><span>{{ data.idTblEstadoVigencia ?? '—' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="ref.close()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

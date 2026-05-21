@@ -1,0 +1,64 @@
+<div class="dialog-wrap" style="min-width: 500px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">{{ esEdicion ? 'Editar' : 'Nuevo' }} Agenda Medica</div>
+      <div class="dialog-subtitle">
+        {{ esEdicion ? 'Modifique los campos necesarios' : 'Complete los campos obligatorios' }}
+      </div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >calendar_month</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <form [formGroup]="form" class="form-grid" style="padding-top: 8px">
+      <mat-form-field appearance="outline" class="full-col">
+        <mat-label>Medico *</mat-label>
+        <mat-select formControlName="idMedico">
+          <mat-option *ngFor="let e of medicos" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Fecha *</mat-label>
+        <input matInput formControlName="fecha" type="date" />
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Estado Vigencia *</mat-label>
+        <mat-select formControlName="idTblEstadoVigencia">
+          <mat-option *ngFor="let e of estadosVigencia" [value]="e.value">{{ e.text }}</mat-option>
+        </mat-select>
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Hora Inicio *</mat-label>
+        <input matInput formControlName="horaInicio" type="text" />
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="">
+        <mat-label>Hora Fin *</mat-label>
+        <input matInput formControlName="horaFin" type="text" />
+        <mat-error>Obligatorio</mat-error>
+      </mat-form-field>
+      <div class="" style="padding: 10px 0">
+        <mat-slide-toggle formControlName="esDisponible">Disponible</mat-slide-toggle>
+      </div>
+      <mat-form-field appearance="outline" class="full-col">
+        <mat-label>Observacion</mat-label>
+        <textarea matInput formControlName="observacion" rows="3"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-button (click)="ref.close(false)">Cancelar</button>
+    <button mat-flat-button color="primary" (click)="guardar()" [disabled]="loading">
+      <mat-spinner
+        *ngIf="loading"
+        diameter="18"
+        style="display: inline-block; margin-right: 6px; vertical-align: middle"
+      ></mat-spinner>
+      {{ loading ? 'Guardando...' : esEdicion ? 'Actualizar' : 'Crear Registro' }}
+    </button>
+  </mat-dialog-actions>
+</div>

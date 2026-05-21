@@ -1,0 +1,30 @@
+<div class="dialog-wrap" style="min-width: 480px">
+  <div class="dialog-header">
+    <div>
+      <div class="dialog-title">Detalle — Medico</div>
+      <div class="dialog-subtitle">Informacion de solo lectura</div>
+    </div>
+    <mat-icon style="color: var(--ov-primary); font-size: 28px; width: 28px; height: 28px"
+      >medical_services</mat-icon
+    >
+  </div>
+  <mat-dialog-content>
+    <div class="detalle-grid" style="padding-top: 8px">
+      <div class="detalle-item">
+        <label>ID</label><span>{{ data.idMedico ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>CMP</label><span>{{ data.cmp ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Perfil</label><span>{{ data.perfilProfesional ?? '—' }}</span>
+      </div>
+      <div class="detalle-item">
+        <label>Estado</label><span>{{ data.idTblEstadoVigencia ?? '—' }}</span>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="ref.close()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

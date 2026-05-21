@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Router } from '@angular/router';
 import { MaterialModule } from '../../../shared/material.module';
 import { AuthService } from '../../../core/services/auth.service';
-import { AppModeService } from '../../../core/services/app-mode.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -16,36 +15,21 @@ export class LoginComponent {
   hidePass = true;
   loading = false;
   form: FormGroup;
-  readonly demoAccounts = [
-    { label: 'Admin demo', correo: 'admin@demo.pe', claveHash: 'demo123' },
-    { label: 'Paciente demo', correo: 'paciente@demo.pe', claveHash: 'demo123' },
-  ];
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
     private router: Router,
-    public mode: AppModeService,
   ) {
     this.form = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       claveHash: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
-  get versionDemo(): boolean {
-    return this.mode.versionDemo();
-  }
   get correo() {
     return this.form.get('correo');
   }
   get claveHash() {
     return this.form.get('claveHash');
-  }
-  onModeChange(enabled: boolean): void {
-    this.mode.setDemoMode(enabled);
-    if (enabled) this.usarCuentaDemo(this.demoAccounts[0]);
-  }
-  usarCuentaDemo(account: { correo: string; claveHash: string }): void {
-    this.form.patchValue(account);
   }
   submit(): void {
     this.form.markAllAsTouched();
